@@ -1,6 +1,11 @@
 LightningTalker::Application.routes.draw do
   resources :users
-  resources :topics
+
+  resources :topics do
+    put 'claim' => 'topics#claim', on: :member
+    put 'unclaim' => 'topics#unclaim', on: :member
+  end
+
   resources :sessions, only: [:new, :create]
 
   get 'sign_up' => 'users#new', as: 'sign_up'

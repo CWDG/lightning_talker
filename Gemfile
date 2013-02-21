@@ -16,7 +16,6 @@ group :development, :test do
   gem "pry-remote"
   gem "pry-debugger"
   gem "pry-stack_explorer"
-  gem "better_errors"
 end
 
 group :production do

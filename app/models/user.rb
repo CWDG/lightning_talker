@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   attr_accessible :password, :password_confirmation, :username
   attr_accessor :password
 
+  has_many :submitted_topics, class_name: 'Topic', foreign_key: 'submitter_id'
+  has_many :speeches, class_name: 'Topic', foreign_key: 'speaker_id'
+
   validates :password, presence: true, on: :create
   validates :password, confirmation: true, length: {minimum: 6}, if: ->(u){ u.password.present? }
   validates :username, presence: true, length: {in: 2..20}, uniqueness: true
@@ -19,6 +22,14 @@ class User < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  def editable_topics
+    Topic.where('(topics.submitter_id = ? AND topics.speaker_id IS NULL) OR topics.speaker_id = ?', self, self)
+  end
+
+  def claimable_topics
+    Topic.where(speaker_id: nil)
   end
 
   private

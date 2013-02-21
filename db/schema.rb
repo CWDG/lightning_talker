@@ -11,13 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221183829) do
+ActiveRecord::Schema.define(:version => 20130221203629) do
+
+  create_table "profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "github"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "topics", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "submitter_id"
+    t.integer  "speaker_id"
   end
 
   create_table "users", :force => true do |t|
@@ -26,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130221183829) do
     t.string   "password_salt"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "profile_id"
   end
 
 end

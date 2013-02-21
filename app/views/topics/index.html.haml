@@ -3,9 +3,18 @@
   %small
     = link_to '+ New Topic Idea', new_topic_path
 
-%ul
+%table
+  %thead
+    %tr
+      %th Topic
+      %th Description
+      %th Submitter
+      %th Speaker
+  %tbody
   - @topics.each do |topic|
-    %li
-      .title= topic.topic_link
-      .desc= topic.description
+    %tr
+      %td.title= topic.topic_link
+      %td.desc= topic.description
+      %td.submitter= topic.submitter_link
+      %td.speaker= topic.speaker_link
 
