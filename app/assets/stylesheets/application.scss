@@ -11,3 +11,25 @@
  *= require_self
  *= require_tree .
  */
+
+$green-color: #6dc000;
+
+a {
+  text-decoration: none;
+  color: darken($green-color, 10%);
+  &:hover {
+    color: $green-color;
+  }
+}
+
+h1 small {
+  font-size: 0.5em;
+  margin-left: 30px;
+  font-weight: normal;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+  list-style-type: none;
+}
