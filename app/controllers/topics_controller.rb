@@ -1,6 +1,8 @@
 class TopicsController < ApplicationController
   respond_to :html, :json
 
+  before_filter :require_authentication!, except: [:index, :show]
+
   # GET /topics
   # GET /topics.json
   def index

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   respond_to :html, :json
 
+  before_filter :require_authentication!, except: [:show, :new, :create]
+
   # GET /users
   # GET /users.json
   def index
@@ -25,6 +27,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id]).decorate
+    return if unauthorized_user!
     respond_with @user
   end
 
@@ -40,6 +43,7 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id]).decorate
+    return if unauthorized_user!
     @user.update_attributes(params[:user])
     respond_with @user
   end
@@ -48,7 +52,17 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id]).decorate
+    return if unauthorized_user!
     @user.destroy
     respond_with @user
+  end
+
+  private
+
+  # TODO: this isn't working quite right. I'm getting double renders, but it does block access.
+  def unauthorized_user!
+    if @user != current_user
+      redirect_to root_path, status: :unauthorized, alert: 'You can only perform this action on your own user!'
+    end
   end
 end

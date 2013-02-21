@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
     Topic.where(speaker_id: nil)
   end
 
+  def can_edit_topic?(topic)
+    topic.speaker == self || (topic.speaker.nil? && topic.submitter == self)
+  end
+
   private
 
   def encrypt_password

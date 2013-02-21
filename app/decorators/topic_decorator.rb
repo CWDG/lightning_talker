@@ -17,7 +17,7 @@ class TopicDecorator < Draper::Decorator
     end
   end
 
-  def description
+  def short_description
     h.truncate(source.description, length: 30)
   end
 
@@ -26,7 +26,7 @@ class TopicDecorator < Draper::Decorator
   def user_speaker_link
     if source.speaker_id == h.current_user.id
       h.link_to 'Unclaim', h.unclaim_topic_path(source), method: :put
-    elsif source.speaker_id.present?
+    elsif source.speaker.present?
       h.link_to source.speaker.username, h.user_path(source.speaker)
     elsif source.claimable?
       h.link_to 'Claim', h.claim_topic_path(source), method: :put

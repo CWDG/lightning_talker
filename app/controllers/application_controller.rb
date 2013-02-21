@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :signed_in?
   protect_from_forgery
 
+  def require_authentication!
+    redirect_to sign_in_path, alert: 'You must sign in to access that page.' unless signed_in?
+  end
+
   private
 
   def current_user

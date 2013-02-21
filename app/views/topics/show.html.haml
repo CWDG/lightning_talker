@@ -1,13 +1,24 @@
 %p
-  %b Title:
-  = @topic.title
+  %h3
+    = "\"#{@topic.title}\""
+    - if @topic.speaker.present?
+      %small
+        presented by
+        = @topic.speaker.username
+    - else
+      %small
+        submitted by
+        = @topic.submitter.username
+
 %p
   %b Description:
   = @topic.description
 
-%p
-  = link_to 'Edit', edit_topic_path(@topic)
-  \|
-  = link_to 'Destroy', topic_path(@topic), method: :delete
-  \|
-  = link_to 'Back', topics_path
+- if signed_in?
+  %p
+    - if current_user.can_edit_topic?(@topic)
+      = link_to 'Edit', edit_topic_path(@topic)
+      \|
+      = link_to 'Destroy', topic_path(@topic), method: :delete
+      \|
+    = link_to 'Back', topics_path
