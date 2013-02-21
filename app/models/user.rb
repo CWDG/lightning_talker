@@ -10,6 +10,17 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
 
+  def self.authenticate(username, password)
+    return nil if username.blank? || password.blank?
+
+    user = where(username: username).first
+    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+      user
+    else
+      nil
+    end
+  end
+
   private
 
   def encrypt_password

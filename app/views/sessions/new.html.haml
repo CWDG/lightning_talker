@@ -1,0 +1,13 @@
+%h2 Sign In
+
+= form_tag sessions_path, method: :post do
+  .field
+    = label_tag :username
+    = text_field_tag :username, @username
+  .field
+    = label_tag :password
+    = password_field_tag :password
+  .actions
+    = submit_tag 'Sign In'
+
+= link_to 'Back', root_path
