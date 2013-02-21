@@ -1,0 +1,19 @@
+// Place all the styles related to the topics controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$green-color: #6dc000;
+
+a {
+  text-decoration: none;
+  color: darken($green-color, 10%);
+  &:hover {
+    color: $green-color;
+  }
+}
+
+h1 small {
+  font-size: 0.5em;
+  margin-left: 20px;
+  font-weight: normal;
+}

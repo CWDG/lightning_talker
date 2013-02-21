@@ -1,0 +1,11 @@
+%h2
+  Lightning Talk Topics
+  %small
+    = link_to '+ New Topic Idea', new_topic_path
+
+%ul
+  - @topics.each do |topic|
+    %li
+      .title= topic.topic_link
+      .desc= topic.description
+

@@ -1,0 +1,13 @@
+%p
+  %b Title:
+  = @topic.title
+%p
+  %b Description:
+  = @topic.description
+
+%p
+  = link_to 'Edit', edit_topic_path(@topic)
+  \|
+  = link_to 'Destroy', topic_path(@topic), method: :delete
+  \|
+  = link_to 'Back', topics_path
