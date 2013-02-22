@@ -11,14 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221203629) do
+ActiveRecord::Schema.define(:version => 20130222041701) do
 
-  create_table "profiles", :force => true do |t|
+  create_table "analytics_events", :force => true do |t|
     t.string   "name"
-    t.string   "github"
+    t.string   "user"
+    t.string   "url"
+    t.integer  "count"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "analytics_events", ["name", "user", "url"], :name => "index_analytics_events_on_name_and_user_and_url"
 
   create_table "topics", :force => true do |t|
     t.string   "title"

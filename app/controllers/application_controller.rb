@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include AnalyticsTracker
+
   helper_method :current_user, :signed_in?
   protect_from_forgery
 
@@ -15,4 +17,5 @@ class ApplicationController < ActionController::Base
   def signed_in?
     current_user.present?
   end
+
 end
