@@ -13,10 +13,11 @@
  */
 
 $green-color: #6dc000;
+$dark-green-color: darken($green-color, 10%);
 
 a {
   text-decoration: none;
-  color: darken($green-color, 10%);
+  color: $dark-green-color;
   &:hover {
     color: $green-color;
   }
@@ -28,8 +29,42 @@ h1 small, h2 small, h3 small, h4 small, h5 small {
   font-weight: normal;
 }
 
-nav li {
-  display: inline-block;
-  margin-right: 20px;
-  list-style-type: none;
+nav {
+  ul { padding-left: 0; }
+
+  li {
+    display: inline-block;
+    margin: 0 5px;
+    list-style-type: none;
+  }
+}
+
+.flashes {
+  display: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#flash_alert {
+  background-color: pink;
+  padding: 5px;
+}
+
+#flash_notice {
+  background-color: lightgreen;
+  padding: 5px;
+}
+
+.announcement {
+  border: 1px dotted #034508;
+  background-color: #E3FFE5;
+}
+
+.info {
+  padding: 0px 20px;
+}
+
+strong {
+  color: $dark-green-color;
 }

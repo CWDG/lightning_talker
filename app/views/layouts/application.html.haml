@@ -13,12 +13,16 @@
       %nav
         %ul
           %li= link_to 'Topics', topics_path
+          \|
           - if signed_in?
             %li
               Logged in as
               = link_to current_user.username, current_user
-              = link_to '(Sign Out)', sign_out_path
+            \|
+            %li
+              = link_to 'Sign Out', sign_out_path
           - else
             %li= link_to 'Sign In', sign_in_path
+            \|
             %li= link_to 'Sign Up', sign_up_path
     = yield

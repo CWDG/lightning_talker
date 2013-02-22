@@ -1,3 +1,6 @@
+- unless signed_in?
+  = render 'shared/introduction'
+
 %h2
   Lightning Talk Topics
   %small
@@ -18,3 +21,4 @@
       %td.submitter= topic.submitter_link
       %td.speaker= topic.speaker_link
 
+= render 'shared/how_it_works'
