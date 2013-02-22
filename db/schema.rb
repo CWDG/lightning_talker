@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(:version => 20130222041701) do
 
   add_index "analytics_events", ["name", "user", "url"], :name => "index_analytics_events_on_name_and_user_and_url"
 
+  create_table "profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "github"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "topics", :force => true do |t|
     t.string   "title"
     t.text     "description"
