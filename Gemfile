@@ -6,6 +6,8 @@ gem 'jquery-rails'
 gem "haml-rails"
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'draper'
+gem "less-rails", '~> 2.2.6'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 group :development, :test do
   gem 'sqlite3'
@@ -27,8 +29,6 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-  gem "less-rails", '~> 2.2.6'
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 end
 
 
