@@ -1,8 +1,20 @@
-%p#notice= notice
+%h2= @user.username
 
-%p
-  %b Username:
-  = @user.username
+%h3 Submitted Topics
+- if @user.submitted_topics.empty?
+  %p None yet!
+- else
+  %ul
+    - @user.submitted_topics.each do |topic|
+      %li= topic.title
+
+%h3 Topics Claimed
+- if @user.speeches.empty?
+  %p None yet!
+- else
+  %ul
+    - @user.speeches.each do |topic|
+      %li= topic.title
 
 - if signed_in?
   %p
