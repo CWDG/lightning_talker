@@ -11,10 +11,9 @@
   %strong
     You must claim a topic.
 %p
-  If you have any questions,
-  %a{:target => "blank", :href => "mailto:cwdg@lists.osu.edu"} email the list,
+  If you have any questions, #{mail_to('mailto:cwdg@lists.osu.edu', 'email the list')},
   or if you prefer,
-  %a{:target => "blank", :href => "mailto:saterus@gmail.com"} Alex
+  = mail_to 'saterus@gmail.com', 'Alex'
   or
-  %a{:target => "blank", :href => "mailto:tarebyte@gmail.com"} Mark
+  = mail_to 'tarebyte@gmail.com', 'Mark'
   directly. The #cwdg channel on IRC is also always available.
