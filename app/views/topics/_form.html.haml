@@ -1,4 +1,6 @@
-= form_for @topic do |f|
+= form_for @topic, html: { class: 'centered-form large' } do |f|
+  = yield :form_title
+
   - if @topic.errors.any?
     #error_explanation
       %h2= "#{pluralize(@topic.errors.count, "error")} prohibited this topic from being saved:"
@@ -8,9 +10,9 @@
 
   .field
     = f.label :title
-    = f.text_field :title
+    = f.text_field :title, class: 'input-block-level'
   .field
     = f.label :description
-    = f.text_area :description
+    = f.text_area :description, class: 'input-block-level'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary btn-large pull-right'

@@ -2,11 +2,11 @@
   = render 'shared/introduction'
 
 %h2
-  Lightning Talk Topics
-  %small
-    = link_to '+ New Topic Idea', new_topic_path
+  Lightning Talks
+  %small.pull-right
+    = link_to '+ New Topic Idea', new_topic_path, class: 'btn btn-primary'
 
-%table
+%table.table.table-hover
   %thead
     %tr
       %th Topic
@@ -22,3 +22,6 @@
       %td.speaker= topic.speaker_link
 
 = render 'shared/how_it_works'
+
+%br/
+%br/

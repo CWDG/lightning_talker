@@ -1,13 +1,10 @@
-%h2 Sign In
-
-= form_tag sessions_path, method: :post do
+= form_tag sessions_path, method: :post, class: 'centered-form' do
+  %h2 Please Sign In
   .field
     = label_tag :username
-    = text_field_tag :username, @username
+    = text_field_tag :username, @username, class: 'input-block-level'
   .field
     = label_tag :password
-    = password_field_tag :password
+    = password_field_tag :password, '', class: 'input-block-level'
   .actions
-    = submit_tag 'Sign In'
-
-= link_to 'Back', root_path
+    = submit_tag 'Sign In', class: 'btn btn-primary btn-large pull-right'

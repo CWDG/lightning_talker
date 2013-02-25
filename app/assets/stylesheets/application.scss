@@ -12,56 +12,7 @@
  *= require_tree .
  */
 
-$green-color: #6dc000;
-$dark-green-color: darken($green-color, 10%);
 
-a {
-  text-decoration: none;
-  color: $dark-green-color;
-  &:hover {
-    color: $green-color;
-  }
+body {
+  padding-top: 60px;
 }
-
-h1 small, h2 small, h3 small, h4 small, h5 small {
-  font-size: 0.75em;
-  margin-left: 30px;
-  font-weight: normal;
-}
-
-nav {
-  ul { padding-left: 0; }
-
-  li {
-    display: inline-block;
-    margin: 0 5px;
-    list-style-type: none;
-  }
-}
-
-.flashes {
-  display: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-#flash_alert {
-  background-color: pink;
-  padding: 5px;
-}
-
-#flash_notice {
-  background-color: lightgreen;
-  padding: 5px;
-}
-
-.announcement {
-  border: 1px dotted #034508;
-  background-color: #E3FFE5;
-}
-
-.info {
-  padding: 0px 20px;
-}
-
