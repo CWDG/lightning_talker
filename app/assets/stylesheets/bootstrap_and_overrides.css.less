@@ -69,3 +69,15 @@ h1 span, h2 span, h3 span, h4 span, h5 span {
   font-weight: normal;
 }
 
+.announcement {
+  background-color: @blue;
+  border: 2px solid darken(@purple, 20%);
+  .border-radius(5px);
+  .box-shadow(1px 1px 4px darken(@purple, 20%));
+  padding: 20px;
+  color: @black;
+
+  a {
+    color: darken(@purple, 3%);
+  }
+}
