@@ -1,6 +1,14 @@
 %h2= @user.username
 
-%h3 Submitted Topics
+%h3
+  Karma Score:
+  = @user.karma
+
+%h3
+  Submitted Topics
+  - if @user.submitter_karma > 0
+    %small= "(+ #{@user.submitter_karma} karma)"
+
 - if @user.submitted_topics.empty?
   %p None yet!
 - else
@@ -8,7 +16,11 @@
     - @user.submitted_topics.each do |topic|
       %li= topic.title
 
-%h3 Topics Claimed
+%h3
+  Topics Claimed
+  - if @user.speaker_karma > 0
+    %small= "(+ #{@user.speaker_karma} karma)"
+
 - if @user.speeches.empty?
   %p None yet!
 - else

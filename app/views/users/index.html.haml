@@ -1,11 +1,18 @@
 %h2
-  Users
+  Top Users by Karma Score
   %small
     = link_to 'Sign Up', new_user_path
 
-%ul
-  - @users.each do |user|
-    %li= link_to user.username, user
+%table
+  %thead
+    %tr
+      %th Karma
+      %th Username
+  %tbody
+  - @users.sort_by(&:karma).reverse.each do |user|
+    %tr
+      %td +#{user.karma}
+      %td= link_to user.username, user
 
 %br
 
