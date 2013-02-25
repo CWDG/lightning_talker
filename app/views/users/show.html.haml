@@ -14,7 +14,7 @@
 - else
   %ul
     - @user.submitted_topics.each do |topic|
-      %li= topic.title
+      %li= link_to topic.title, topic
 
 %h3
   Topics Claimed
@@ -26,7 +26,7 @@
 - else
   %ul
     - @user.speeches.each do |topic|
-      %li= topic.title
+      %li= link_to topic.title, topic
 
 - if signed_in?
   %p
