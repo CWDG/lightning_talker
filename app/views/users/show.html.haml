@@ -11,7 +11,7 @@
       %h4= @user.name
 
     - if @user.github.present?
-      %h4= link_to "https://github.com/#{@user.github}"
+      %h4= link_to "https://github.com/#{@user.github}", "https://github.com/#{@user.github}"
 
 
     %h3
