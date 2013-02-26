@@ -4,6 +4,7 @@ LightningTalker::Application.routes.draw do
   resources :topics do
     put 'claim' => 'topics#claim', on: :member
     put 'unclaim' => 'topics#unclaim', on: :member
+    get 'schedule' => 'topics#schedule', on: :collection
   end
 
   resources :sessions, only: [:new, :create]

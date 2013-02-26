@@ -8,8 +8,12 @@ class Topic < ActiveRecord::Base
   validates :submitter, presence: true
   validates :title, presence: true, length: {in: 6..30}
 
-  def self.recent
-    scoped.order(:created_at).reverse_order
+  def self.sorted
+    scoped.order(:speaker_id, :created_at).reverse_order
+  end
+
+  def self.claimed
+    scoped.where('speaker_id IS NOT NULL')
   end
 
   def claimable?

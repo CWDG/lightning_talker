@@ -1,0 +1,21 @@
+%h2
+  Lightning Talk Schedule
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Order
+      %th Start Time
+      %th Topic
+      %th Description
+      %th Submitter
+      %th Speaker
+  %tbody
+  - @topics.each_with_index do |topic, index|
+    %tr
+      %td.order= index + 1
+      %td.time= (Time.parse('7:00') + ((index+1) * 10).minutes).strftime("%I:%M")
+      %td.title= topic.topic_link
+      %td.desc= topic.short_description
+      %td.submitter= topic.submitter_link
+      %td.speaker= topic.speaker_link

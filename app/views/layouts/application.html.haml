@@ -10,10 +10,13 @@
     .container
       = bootstrap_flash
 
+
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
           = link_to '<CWDG/> LightningTalker', root_path, class: 'brand'
+          %ul.nav
+            %li= link_to 'Schedule', schedule_topics_path
           %ul.nav.pull-right
             - if signed_in?
               %li= link_to"#{current_user.username}'s Profile", current_user

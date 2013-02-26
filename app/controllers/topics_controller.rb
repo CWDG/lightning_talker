@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
   before_filter :force_updated_user_profile!
 
   def index
-    @topics = Topic.recent.decorate
+    @topics = Topic.sorted.decorate
     respond_with @topics
   end
 
@@ -51,6 +51,11 @@ class TopicsController < ApplicationController
     @topic.speaker = nil
     @topic.save
     redirect_to root_path
+  end
+
+  def schedule
+    @topics = Topic.claimed.decorate.sort_by{ rand }
+    respond_with @topics
   end
 
   def destroy
