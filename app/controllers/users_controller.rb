@@ -47,7 +47,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]).decorate
     return if unauthorized_user!
     @user.update_attributes(params[:user])
-    binding.pry
     respond_with @user
   end
 

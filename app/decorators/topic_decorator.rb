@@ -25,7 +25,7 @@ class TopicDecorator < Draper::Decorator
 
   def user_speaker_link
     if source.speaker_id == h.current_user.id
-      h.link_to 'Unclaim', h.unclaim_topic_path(source), method: :put, class: 'btn btn-mini btn-primary btn-block'
+      h.link_to 'Unclaim', h.unclaim_topic_path(source), method: :put, class: 'btn btn-mini btn-danger btn-block'
     elsif source.speaker.present?
       h.link_to source.speaker.username, h.user_path(source.speaker)
     elsif source.claimable?

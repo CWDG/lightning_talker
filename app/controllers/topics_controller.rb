@@ -4,68 +4,55 @@ class TopicsController < ApplicationController
   before_filter :require_authentication!, except: [:index, :show]
   before_filter :force_updated_user_profile!
 
-  # GET /topics
-  # GET /topics.json
   def index
     @topics = Topic.recent.decorate
     respond_with @topics
   end
 
-  # GET /topics/1
-  # GET /topics/1.json
   def show
     @topic = Topic.find(params[:id]).decorate
     respond_with @topic
   end
 
-  # GET /topics/new
-  # GET /topics/new.json
   def new
     @topic = current_user.submitted_topics.build.decorate
     respond_with @topic
   end
 
-  # GET /topics/1/edit
   def edit
     @topic = current_user.editable_topics.find(params[:id]).decorate
   end
 
-  # POST /topics
-  # POST /topics.json
   def create
     @topic = current_user.submitted_topics.build(params[:topic]).decorate
     @topic.save
     respond_with @topic
   end
 
-  # PUT /topics/1
-  # PUT /topics/1.json
   def update
     @topic = current_user.editable_topics.find(params[:id]).decorate
     @topic.update_attributes(params[:topic])
     respond_with @topic
   end
 
-  # PUT /topics/1/claim
-  # PUT /topics/1/claim.json
   def claim
-    @topic = current_user.claimable_topics.find(params[:id]).decorate
-    @topic.speaker = current_user
-    @topic.save
-    respond_with @topic
+    if current_user.speeches.count < 2
+      @topic = current_user.claimable_topics.find(params[:id]).decorate
+      @topic.speaker = current_user
+      @topic.save
+    else
+      flash[:alert] = 'You cannot volunteer for more than 2 topics at a time. You can unclaim less desirable topics if you wish to switch to this topic.'
+    end
+    redirect_to root_path
   end
 
-  # PUT /topics/1/unclaim
-  # PUT /topics/1/unclaim.json
   def unclaim
     @topic = current_user.speeches.find(params[:id]).decorate
     @topic.speaker = nil
     @topic.save
-    respond_with @topic
+    redirect_to root_path
   end
 
-  # DELETE /topics/1
-  # DELETE /topics/1.json
   def destroy
     @topic = current_user.editable_topics.find(params[:id]).decorate
     @topic.destroy
