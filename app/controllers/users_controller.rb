@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   respond_to :html, :json
 
   before_filter :require_authentication!, except: [:show, :new, :create]
+  before_filter :force_updated_user_profile!, except: [:edit, :update]
 
   # GET /users
   # GET /users.json
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user]).decorate
     @user.save
+    session[:user_id] = @user.id
     respond_with @user
   end
 
@@ -45,6 +47,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]).decorate
     return if unauthorized_user!
     @user.update_attributes(params[:user])
+    binding.pry
     respond_with @user
   end
 
@@ -54,7 +57,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]).decorate
     return if unauthorized_user!
     @user.destroy
-    respond_with @user
+    session.delete(:user_id)
+    redirect_to root_path
   end
 
   private

@@ -2,6 +2,7 @@ class TopicsController < ApplicationController
   respond_to :html, :json
 
   before_filter :require_authentication!, except: [:index, :show]
+  before_filter :force_updated_user_profile!
 
   # GET /topics
   # GET /topics.json

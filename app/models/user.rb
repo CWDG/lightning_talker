@@ -1,7 +1,9 @@
 require 'bcrypt'
 
+EMAIL_REGEX = /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/ 
+
 class User < ActiveRecord::Base
-  attr_accessible :password, :password_confirmation, :username
+  attr_accessible :email, :github, :name, :password, :password_confirmation, :username
   attr_accessor :password
 
   has_many :submitted_topics, class_name: 'Topic', foreign_key: 'submitter_id'
@@ -10,6 +12,12 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   validates :password, confirmation: true, length: {minimum: 6}, if: ->(u){ u.password.present? }
   validates :username, presence: true, length: {in: 2..20}, uniqueness: true
+
+  validates :name, presence: true, on: :save
+  validates :name, length: {in: 2..64}
+  validates :email, presence: true, on: :save
+  validates :email, length: {in: 6..64}, uniqueness: true, format: {with: EMAIL_REGEX}
+  validates :github, length: {in: 1..64}
 
   before_save :encrypt_password
 

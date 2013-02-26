@@ -1,43 +1,49 @@
-%h1
-  = @user.username
-  - if @user == current_user
-    = link_to edit_user_path(@user), class: 'btn btn-primary btn-small' do
-      %i.icon.icon-edit
-      %span Edit
+.row
+  .sidebar.span4
+    %h1
+      = @user.username
+      - if @user == current_user
+        = link_to edit_user_path(@user), class: 'btn btn-primary btn-small' do
+          %i.icon.icon-edit
+          %span Edit
 
-%h3
-  Karma Score:
-  = @user.karma
+    - if @user.name.present?
+      %h4= @user.name
 
-%h3
-  Submitted Topics
-  - if @user.submitter_karma > 0
-    %small= "(+ #{@user.submitter_karma} karma)"
+    - if @user.github.present?
+      %h4= link_to "https://github.com/#{@user.github}"
 
-- if @user.submitted_topics.empty?
-  %p None yet!
-- else
-  %ul
-    - @user.submitted_topics.each do |topic|
-      %li= link_to topic.title, topic
 
-%h3
-  Topics Claimed
-  - if @user.speaker_karma > 0
-    %small= "(+ #{@user.speaker_karma} karma)"
+    %h3
+      Karma Score:
+      = @user.karma
 
-- if @user.speeches.empty?
-  %p None yet!
-- else
-  %ul
-    - @user.speeches.each do |topic|
-      %li= link_to topic.title, topic
+    - if @user == current_user
+      = link_to user_path(@user), method: :delete, confirm: 'I am super, super sure I want to cancel my LightningTalker account.', class: 'btn btn-danger' do
+        %i.icon.icon-trash
+        I want to Cancel my Account
 
-%br/
-%br/
-%br/
+  .talks.span8
+    %h3
+      Submitted Topics
+      - if @user.submitter_karma > 0
+        %small= "(+ #{@user.submitter_karma} karma)"
 
-- if @user == current_user
-  = link_to user_path(@user), method: :delete, class: 'btn btn-danger' do
-    %i.icon.icon-trash
-    Cancel my Account
+    - if @user.submitted_topics.empty?
+      %p None yet!
+    - else
+      %ul
+        - @user.submitted_topics.each do |topic|
+          %li= link_to topic.title, topic
+
+    %h3
+      Topics Claimed
+      - if @user.speaker_karma > 0
+        %small= "(+ #{@user.speaker_karma} karma)"
+
+    - if @user.speeches.empty?
+      %p None yet!
+    - else
+      %ul
+        - @user.speeches.each do |topic|
+          %li= link_to topic.title, topic

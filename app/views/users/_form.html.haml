@@ -7,10 +7,20 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-
   .field
     = f.label :username
     = f.text_field :username, class: 'input-block-level'
+  .field
+    = f.label :name
+    = f.text_field :name, class: 'input-block-level'
+  .field
+    = f.label :email do
+      Email
+      %small.pull-right (Never shown or shared)
+    = f.text_field :email, class: 'input-block-level'
+  .field
+    = f.label :github
+    = f.text_field :github, class: 'input-block-level'
   .field
     = f.label :password
     = f.password_field :password, class: 'input-block-level'
