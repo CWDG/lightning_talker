@@ -1,3 +1,5 @@
+require 'digest'
+
 class TopicsController < ApplicationController
   respond_to :html, :json
 
@@ -54,7 +56,7 @@ class TopicsController < ApplicationController
   end
 
   def schedule
-    @topics = Topic.claimed.decorate.sort_by{ rand }
+    @topics = Topic.claimed.decorate.sort_by{|topic| Digest::SHA1.hexdigest(Date.today.to_s + topic.id.to_s) }
     respond_with @topics
   end
 
